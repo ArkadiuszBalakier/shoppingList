@@ -8,8 +8,10 @@ type ShoppingListData = {
   isBuyedCheck: (id: string) => void;
   deleteProduct: (id: string) => void;
   editing: boolean;
-  editingMode: () => void;
+  editingMode: (id: string) => void;
   clearList: () => void;
+  listItemId: string | null;
+  editItem: (editedItem: FormData) => void;
 };
 
 const ShoppingListContext = createContext<ShoppingListData | undefined>(
@@ -32,6 +34,7 @@ export function ShoppingListProvider({
   children: React.ReactNode;
 }) {
   const [shoppingList, setShoppingList] = useState<FormData[]>([]);
+  const [listItemId, setListItemId] = useState("");
   const [editing, setEditing] = useState(false);
 
   const getLocalStorageList = () => {
@@ -79,8 +82,22 @@ export function ShoppingListProvider({
     localStorage.removeItem("ShoppingList");
   };
 
-  const editingMode = () => {
+  const editingMode = (id: string) => {
     setEditing(!editing);
+    setListItemId(id);
+  };
+
+  const editItem = (editedItem: FormData) => {
+    const editedItemIndex = shoppingList.findIndex(
+      (item) => item.id === editedItem.id
+    );
+    if (editedItemIndex !== -1) {
+      const updatedShoppingList = [...shoppingList];
+      updatedShoppingList[editedItemIndex] = editedItem;
+
+      setShoppingList(updatedShoppingList);
+      localStorage.setItem("ShoppingList", JSON.stringify(updatedShoppingList));
+    }
   };
 
   const value: ShoppingListData = {
@@ -92,6 +109,8 @@ export function ShoppingListProvider({
     editing,
     editingMode,
     clearList,
+    listItemId,
+    editItem,
   };
 
   return (

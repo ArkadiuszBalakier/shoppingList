@@ -38,7 +38,7 @@ export default function ShoppingListItem({
         </IconButton>
         <IconButton
           onClick={() => {
-            editingMode();
+            editingMode(id);
           }}
         >
           <EditIcon />

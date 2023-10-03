@@ -4,9 +4,10 @@ import ShoppingForm from "./components/ShoppingForm";
 import ShoppingList from "./components/ShoppingList";
 import { useShoppingList } from "./context/ShoppingListContext";
 import "./index.css";
+import EditMode from "./components/EditMode";
 
 function App() {
-  const { getLocalStorageList } = useShoppingList();
+  const { getLocalStorageList, editing } = useShoppingList();
 
   useEffect(() => {
     getLocalStorageList();
@@ -15,8 +16,14 @@ function App() {
   return (
     <div className="h-screen font-primary">
       <Header />
-      <ShoppingForm />
-      <ShoppingList />
+      {editing ? (
+        <EditMode />
+      ) : (
+        <>
+          <ShoppingForm />
+          <ShoppingList />
+        </>
+      )}
     </div>
   );
 }

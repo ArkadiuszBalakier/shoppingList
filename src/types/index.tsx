@@ -3,4 +3,5 @@ export type FormData = {
   name: string;
   value: string;
   isBuyed?: boolean;
+  editing?: false;
 };
