@@ -1,7 +1,7 @@
 {
   "name": "shopping",
   "version": "0.1.0",
-  "homepage": "https://ArkadiuszBalakier.github.io/shoppingList",
+  "homepage": "https://ArkadiuszBalakier.github.io/shopping-list",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.1",
