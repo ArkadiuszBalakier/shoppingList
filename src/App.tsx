@@ -14,7 +14,7 @@ function App() {
   }, [getLocalStorageList]);
 
   return (
-    <div className="h-screen font-primary">
+    <div className="h-screen font-primary scroll-m-1">
       <Header />
       {editing ? (
         <EditMode />
