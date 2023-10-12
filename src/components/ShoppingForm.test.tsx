@@ -27,3 +27,25 @@ test('the "value" field only accepts numbers', () => {
   // Check if the input value is '123' (it should have accepted the numeric input)
   expect(valueInput.value).toBe("123");
 });
+
+test('the "name field only accepts 20 chars or less', () => {
+  render(
+    <ShoppingListProvider>
+      <ShoppingForm />
+    </ShoppingListProvider>
+  );
+
+  const nameInput = screen.getByPlaceholderText(
+    "What you need to buy ?"
+  ) as HTMLInputElement;
+
+  fireEvent.change(nameInput, {
+    target: { value: "This is Valid string" },
+  });
+  expect(nameInput.value).toBe("This is Valid string");
+
+  fireEvent.change(nameInput, {
+    target: { value: "This is NOT valid string" },
+  });
+  expect(nameInput).toHaveAttribute("aria-invalid", "true");
+});
