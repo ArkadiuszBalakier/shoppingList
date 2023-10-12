@@ -16,9 +16,9 @@ export default function ShoppingListItem({
   const { isBuyedCheck, deleteProduct, editingMode } = useShoppingList();
   return (
     <li className="flex w-full justify-between text-xl mb-5 border-b">
-      <div className={`flex flex-1${linethrough}`}>
-        <p className="mr-5">{name}</p>
-        <p>{value}</p>
+      <div className={`flex flex-1`} data-testId="shopping-list-item">
+        <p className={`mr-5 ${linethrough}`}>{name}</p>
+        <p className={`${linethrough}`}>{value}</p>
       </div>
       <div className="flex justify-end">
         <Checkbox
