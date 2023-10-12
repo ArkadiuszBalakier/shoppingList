@@ -14,11 +14,29 @@ export default function ShoppingForm() {
     value: "",
     isBuyed: false,
   });
+  const [error, setError] = useState(false);
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     const id = uuidv4();
-    setFormData({ ...formData, id, [name]: value });
+
+    if (name === "name") {
+      if (/^[A-Za-z\s]{0,20}$/.test(value)) {
+        // Allow letters and spaces up to 20 characters
+        setFormData({ ...formData, id, [name]: value });
+        setError(false);
+      } else {
+        setError(true);
+      }
+    } else if (name === "value") {
+      if (/^\d{0,5}$/.test(value)) {
+        // Allow up to 5 digits
+        setFormData({ ...formData, id, [name]: value });
+        setError(false);
+      } else {
+        setError(true);
+      }
+    }
   }
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -30,6 +48,9 @@ export default function ShoppingForm() {
   return (
     <form onSubmit={handleSubmit} className="flex gap-2 justify-center">
       <TextField
+        data-testid="nameField"
+        error={error}
+        helperText="max 20 chars"
         autoFocus={true}
         required={true}
         variant="outlined"
@@ -39,6 +60,9 @@ export default function ShoppingForm() {
         onChange={handleChange}
       />
       <TextField
+        data-testid="valueField"
+        error={error}
+        helperText="Only numbers and max lenght 5"
         required={true}
         variant="outlined"
         placeholder="How many ?"

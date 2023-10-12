@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { TextField, Button, Checkbox } from "@mui/material";
 import { FormData } from "../types";
 import { useShoppingList } from "../context/ShoppingListContext";
