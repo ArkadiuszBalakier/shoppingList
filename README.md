@@ -1,3 +1,15 @@
+# ShopingList App
+you can create your own shopping list with this app
+ - add new product
+ - remove product
+ - check product when you buy it
+ - edit product
+
+# Technology 
+-React
+- Tailwindcss
+- TypeScript
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
