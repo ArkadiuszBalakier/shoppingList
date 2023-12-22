@@ -6,9 +6,12 @@ you can create your own shopping list with this app
  - edit product
 
 # Technology 
--React
+- React
 - Tailwindcss
 - TypeScript
+
+# Demo
+- adiuszbalakier.github.io/shoppingList
 
 # Getting Started with Create React App
 
